@@ -22,10 +22,12 @@ npx prisma migrate dev
 npx prisma generate
 ```
 
-5. Levantar la aplicación.
+6. Levantar la aplicación.
 
 ```bash
 npm run dev
 ```
+
+Para setear datos de prueba, abrir [http://localhost:3000/api/seed](http://localhost:3000/api/seed) con tu navegador.
 
 Abrir [http://localhost:3000](http://localhost:3000) con tu navegador para ver el resultado.
