@@ -40,3 +40,15 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
+
+export async function DELETE(request: Request) {
+  try {
+    await prisma.todo.deleteMany({ where: { completed: true } })
+    return NextResponse.json({ message: 'Deleted completed todos' });
+  } catch (error: any) {
+    if (error.name === 'ValidationError') {
+      return NextResponse.json({ error: 'Bad Request', messages: error.errors }, { status: 400 });
+    }
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  }
+}

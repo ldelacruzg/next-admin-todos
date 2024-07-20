@@ -10,22 +10,28 @@ docker compose up -d
 
 3. Reemplazar las variables de entorno dónde sea necesario.
 
-4. Generar la base de datos con migración.
+4. Instalar las dependencias.
+
+```bash
+pnpm install
+```
+
+5. Generar la base de datos con migración.
 
 ```bash
 npx prisma migrate dev
 ```
 
-5. Generar cliente de Prisma
+6. Generar cliente de Prisma
 
 ```bash
 npx prisma generate
 ```
 
-6. Levantar la aplicación.
+7. Levantar la aplicación.
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 Para setear datos de prueba, abrir [http://localhost:3000/api/seed](http://localhost:3000/api/seed) con tu navegador.
