@@ -9,7 +9,7 @@ interface Props {
   toggleTodo: (id: string, completed: boolean) => void;
 }
 
-export const Todoitem = ({ todo, toggleTodo }: Props) => {
+export const TodoItem = ({ todo, toggleTodo }: Props) => {
   return (
     <div className={todo.completed ? style.todoDone : style.todoPending}>
       <div className="flex items-center gap-4">
