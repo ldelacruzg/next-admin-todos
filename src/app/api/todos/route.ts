@@ -1,10 +1,11 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma"
 import * as yup from 'yup';
 
-export async function GET(request: NextRequest) {
-  const limit = Number(request.nextUrl.searchParams.get('limit') ?? 10)
-  const page = Number(request.nextUrl.searchParams.get('page') ?? 1)
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url)
+  const limit = Number(searchParams.get('take') ?? '10')
+  const page = Number(searchParams.get('skip') ?? '1')
 
   if (isNaN(limit) || isNaN(page)) {
     return NextResponse.json({
