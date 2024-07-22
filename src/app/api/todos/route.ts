@@ -4,8 +4,8 @@ import * as yup from 'yup';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
-  const limit = Number(searchParams.get('take') ?? '10')
-  const page = Number(searchParams.get('skip') ?? '1')
+  const limit = Number(searchParams.get('limit') ?? '10')
+  const page = Number(searchParams.get('page') ?? '1')
 
   if (isNaN(limit) || isNaN(page)) {
     return NextResponse.json({
