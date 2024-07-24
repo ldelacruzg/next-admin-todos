@@ -6,6 +6,8 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/todos/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/products/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/shopping-cart/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -16,6 +18,9 @@ const config: Config = {
       },
     },
   },
+  safelist: [
+    { pattern: /grid-cols-./ }
+  ],
   plugins: [],
 };
 export default config;

@@ -10,7 +10,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <TopMenu />
 
         {/* TODO: Contenido en el Layout.tsx */}
-        <div className="px-6 pt-6">
+        <div className="px-6 pt-6 bg-white m-4 p-6 rounded">
           {children}
         </div>
       </div>

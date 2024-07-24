@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { SidebarItem } from "./SidebarItem"
-import { IoCalendarOutline, IoCheckboxOutline, IoListOutline } from "react-icons/io5";
+import { IoBasketOutline, IoCalendarOutline, IoCheckboxOutline, IoCodeWorking, IoListOutline } from "react-icons/io5";
 
 const menu = [
   {
@@ -17,6 +17,16 @@ const menu = [
     title: "Server Actions",
     icon: <IoListOutline />,
     path: "/dashboard/server-todos"
+  },
+  {
+    title: "Cookies",
+    icon: <IoCodeWorking />,
+    path: "/dashboard/cookies"
+  },
+  {
+    title: "Products",
+    icon: <IoBasketOutline />,
+    path: "/dashboard/products"
   }
 ]
 
