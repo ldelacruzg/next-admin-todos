@@ -37,3 +37,11 @@ pnpm run dev
 Para setear datos de prueba, abrir [http://localhost:3000/api/seed](http://localhost:3000/api/seed) con tu navegador.
 
 Abrir [http://localhost:3000](http://localhost:3000) con tu navegador para ver el resultado.
+
+## Nota
+
+Credenciales del usuario por defecto;
+
+Email: <test1@google.com>
+
+Password: 123456

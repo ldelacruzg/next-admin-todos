@@ -1,5 +1,6 @@
 "use server";
 
+import { getUserSessionServer } from '@/auth';
 import prisma from '@/lib/prisma'
 import { Todo } from '@prisma/client'
 import { revalidatePath } from 'next/cache';
@@ -22,7 +23,8 @@ export const toggleTodo = async (id: string, completed: boolean): Promise<Todo> 
 
 export const newTodo = async (description: string) => {
   try {
-    const todo = await prisma.todo.create({ data: { description } })
+    const user = await getUserSessionServer()
+    const todo = await prisma.todo.create({ data: { description, userId: user?.id! } })
     revalidatePath('/dashboard/server-todos')
     return todo
   } catch (error: any) {
@@ -32,7 +34,10 @@ export const newTodo = async (description: string) => {
 
 export const deletedCompletedTodo = async () => {
   try {
-    await prisma.todo.deleteMany({ where: { completed: true } })
+    const user = await getUserSessionServer()
+    if (!user) throw new Error('No authorized')
+
+    await prisma.todo.deleteMany({ where: { completed: true, userId: user.id } })
     revalidatePath('/dashboard/server-todos')
     return { error: false, message: 'Completed todos deleted' }
   } catch (error: any) {

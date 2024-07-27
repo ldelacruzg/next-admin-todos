@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import * as yup from 'yup'
 
 import prisma from "@/lib/prisma"
+import { getUserSessionServer } from "@/auth"
 
 interface RouteSegments {
   params: {
@@ -20,8 +21,15 @@ export async function GET(_: Request, segments: RouteSegments) {
     }, { status: 400 })
   }
 
+  const user = await getUserSessionServer()
+  if (!user) {
+    return NextResponse.json({
+      message: 'Not authorized'
+    }, { status: 401 })
+  }
+
   const todo = await prisma.todo.findUnique({
-    where: { id }
+    where: { id, userId: user.id }
   })
 
   if (!todo) {
@@ -56,9 +64,18 @@ export async function PUT(request: Request, segments: RouteSegments) {
     //? Valid body
     const bodyValid = await UpdateTodoValidation.validate(body)
 
+    //? Valid User Session
+    const user = await getUserSessionServer()
+    if (!user) {
+      return NextResponse.json(
+        { message: 'Not authorized' },
+        { status: 401 }
+      )
+    }
+
     //? Find todo
     const todo = await prisma.todo.findUnique({
-      where: { id }
+      where: { id, userId: user.id }
     })
 
     if (!todo) {
